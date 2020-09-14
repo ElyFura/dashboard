@@ -1,18 +1,11 @@
 'use strict';
 
-if (require('electron-squirrel-startup')) {
-	return;
-}
-
 const path = require('path');
-const {app, BrowserWindow, crashReporter} = require('electron');
+const {app, BrowserWindow} = require('electron');
 const {version} = require('./util');
 const windowStateKeeper = require('electron-window-state');
 
 require('electron-debug')({showDevTools: false});
-
-// Report crashes to our server.
-crashReporter.start();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -55,7 +48,7 @@ app.on('ready', () => {
 	// and restore the maximized or full screen state
 	mainWindowState.manage(mainWindow);
 
-	// and load the index.html of the app.
+	// And load the index.html of the app.
 	const webviewPath = path.resolve(__dirname, '../client/main/main.html');
 	mainWindow.loadURL(`file:///${webviewPath}`);
 });

@@ -1,19 +1,20 @@
 # Standalone NodeCG Dashboard
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/nodecg/dashboard.svg)](https://greenkeeper.io/)
 [![Windows status](https://ci.appveyor.com/api/projects/status/jtvfi9yin53y4es1/branch/master?svg=true)](https://ci.appveyor.com/project/Lange/dashboard/branch/master)
 [![Linux & OSX Status](https://travis-ci.org/nodecg/dashboard.svg?branch=master)](https://travis-ci.org/nodecg/dashboard)
 
 > A standalone application for displaying a NodeCG Dashboard.
 
-## Why?
-Chrome 50 was released on April 13th, 2016. It removed the Object.observe method, which NodeCG's Replicant system relies on. 
-NodeCG ships with an Object.observe polyfill that we thought would be enough to keep things working until the new 
-Proxy-based Replicants system was ready, but this was not the case. The polyfill isn't perfect, 
-and as a result some Replicant operations do not function. 
-This effectively means that the NodeCG dashboard no longer works in any browser.
+![screenshot](screenshot.png)
 
-We are working on a new version of NodeCG (v0.8) that will work in Chrome 50.
-Unfortunately, all previous versions will never work in Chrome again. This application will serve as the primary
-way that users of older versions of NodeCG access their dashboards.
+## Motivation
+There was a brief period of time where NodeCG versions prior to 0.7 did not work in the latest version of Chrome. In an attempt to resolve this issue, the NodeCG team simultaneously worked on two separate solutions:
+
+1. Find a working `Object.observe` polyfill that was compatible with NodeCG's use case.
+2. Create a standalone electron application pinned to Chrome 49, the last version to support `Object.observe`.
+
+We wound up having success with finding a working polyfill, and this standalone application ended up not being necessary. For the time being, this standalone app will remain on Chrome 49. At some point in the future, we may decide to drop support for these old versions of NodeCG which don't have the `Object.observe` polyfill. Since 0.7, NodeCG has used `Proxy` instead of `Object.observe`, and works natively in Chrome 49 and newer.
 
 ## Installation
 Check the [Releases](https://github.com/nodecg/dashboard/releases) page to grab the latest installer for your operating system.

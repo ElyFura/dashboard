@@ -11,3 +11,4 @@ document.addEventListener('click', e => {
 		shell.openExternal(e.target.href);
 	}
 });
+
